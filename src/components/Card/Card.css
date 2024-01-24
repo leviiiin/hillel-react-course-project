@@ -1,0 +1,47 @@
+.card {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+
+  max-width: 350px;
+  padding-top: 30px;
+  margin: 0 auto;
+  margin-top: 100px;
+  
+  border-radius: 52px;
+  border: 1px solid #8028FF;
+
+  cursor: pointer;
+  transition: all 0.6s;
+}
+
+.card__arrow {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  font-size: 55px;
+  color: #8028FF;
+  transform: rotate(45deg);
+  transition: all 0.6s;
+}
+
+.card__title {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.card__img{
+border-radius: 50px;
+}
+
+.card:hover {
+  background: #8028FF;
+  color: aliceblue;
+}
+
+.card:hover .card__arrow {
+  color: aliceblue;
+  transform: rotate(90deg);
+}

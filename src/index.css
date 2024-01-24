@@ -1,0 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic);
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+@font-face {
+  font-weight: bold;
+  font-family: 'Xenotron';
+  src: url('./XENOTRON.TTF');
+}
+
+body {
+  margin: 0;
+  font-family: 'Xenotron';
+  font-size: 16px;
+  line-height: 22px;
+}
