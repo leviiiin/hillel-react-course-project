@@ -1,4 +1,4 @@
-button {
+.button {
   font-family: Roboto Mono, monospace;
   border: 1px solid #dedede;
   padding: 10px 15px;
@@ -13,10 +13,19 @@ button {
   background-color: rgb(255, 201, 38);
 }
 
-.button--primary {
+.primary {
   background-color: rgb(234, 179, 8);
 }
 
-.button--primary:hover {
+.primary:hover {
   background-color: rgb(255, 201, 38);
+}
+
+.ghost {
+  background-color: transparent
+}
+
+.ghost:hover {
+  background-color: rgb(255, 201, 38);
+  border-color: rgb(255, 201, 38);
 }

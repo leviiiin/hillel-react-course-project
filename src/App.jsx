@@ -1,8 +1,8 @@
-import "./styles/global.css";
 import "./styles/reset.css";
+import "./styles/global.css";
 
 import Header from "./layouts/Header/Header";
-import Form from "./components/Form/Form"
+import LoginForm from "./components/LoginForm/LoginForm"
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
             Straight out of the oven, straight to you.
           </span>
         </h1>
-        <Form/>
+        <LoginForm/>
       </main>
     </div>
   );

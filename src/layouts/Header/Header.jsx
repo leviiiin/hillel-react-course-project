@@ -1,5 +1,6 @@
 import "./Header.css";
-import "../../components/Input/Input.css";
+import "../../components/BaseInput/BaseInput.css";
+import Input from '../../components/BaseInput/BaseInput'
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
         Pizza Day
       </a>
       <form>
-        <input placeholder="Search for the order #" />
+        <Input placeholder='Search for the order #' />
       </form>
     </header>
   );
