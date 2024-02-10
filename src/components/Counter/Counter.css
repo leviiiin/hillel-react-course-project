@@ -1,0 +1,31 @@
+.counter {
+  text-align: center;
+}
+
+h1 {
+  font-size: 30px;
+  padding-bottom: 30px;
+}
+
+mark {
+  background: none;
+  color: white;
+  font-weight: 600;
+}
+
+.decrBtn {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.clearBtn {
+  border-radius: 0 !important;
+  border: 2px solid black !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+.incrBtn {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
