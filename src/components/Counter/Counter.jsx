@@ -19,14 +19,28 @@ const Counter = () => {
 
   return (
     <div className="counter">
-      <h1>Count: <mark>{state}</mark></h1>
-      <Button theme="primary" class="decrBtn" click={handleDecrement}>
+      <h1 className="counter__label">
+        Count: <mark>{state}</mark>
+      </h1>
+      <Button
+        theme="primary"
+        className="counter__btn-decrement"
+        click={handleDecrement}
+      >
         -
       </Button>
-      <Button theme="primary" class="clearBtn" click={handleClear}>
+      <Button
+        theme="primary"
+        className="counter__btn-reset"
+        click={handleClear}
+      >
         Clear
       </Button>
-      <Button theme="primary" class="incrBtn" click={handleIncrement}>
+      <Button
+        theme="primary"
+        className="counter__btn-increment"
+        click={handleIncrement}
+      >
         +
       </Button>
     </div>
