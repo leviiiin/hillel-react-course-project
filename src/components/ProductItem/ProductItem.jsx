@@ -6,11 +6,41 @@ import { useState } from "react";
 const ProductItem = ({ product }) => {
   const { imageUrl, name, ingredients, unitPrice, soldOut } = product;
   const ingredientsFormatted = ingredients.join(", ");
-
-  const [showCounter, setShowCounter] = useState(false);
+  const [productAmount, setProductAmount] = useState(0);
 
   const addToCart = () => {
-    setShowCounter(true);
+    setProductAmount(1);
+  };
+
+  const deleteFromCart = () => {
+    setProductAmount(0);
+  };
+
+  const changeProductAmount = (newAmount) => {
+    setProductAmount(newAmount);
+  };
+
+  const getActionTemplate = () => {
+    if (soldOut) {
+      return (
+        <Button theme="disable" className="product__btn">
+          Sold out
+        </Button>
+      );
+    }
+    if (productAmount === 0) {
+      return (
+        <Button theme="primary" className="product__btn" onClick={addToCart}>
+          Add to cart
+        </Button>
+      );
+    }
+
+    return (
+      <Button theme="primary" className="product__btn" onClick={deleteFromCart}>
+        Delete
+      </Button>
+    );
   };
 
   return (
@@ -21,20 +51,14 @@ const ProductItem = ({ product }) => {
         <p className="product__ingredients">{ingredientsFormatted}</p>
         <div className="product__actions">
           <p className="product__price">${unitPrice}</p>
-          {showCounter && <Counter className="product__counter" />}
-          {!soldOut ? (
-            <Button
-              theme="primary"
-              className="product__btn"
-              onClick={addToCart}
-            >
-              Add to cart
-            </Button>
-          ) : (
-            <Button theme="disable" className="product__btn">
-              Sold out
-            </Button>
+          {productAmount !== 0 && (
+            <Counter
+              count={productAmount}
+              onChange={changeProductAmount}
+              className="product__counter"
+            />
           )}
+          {getActionTemplate()}
         </div>
       </div>
     </li>
