@@ -1,9 +1,11 @@
 import "./Menu.css";
 import ProductList from "../ProductList/ProductList";
+import Loader from "../Loader/Loader";
 import { useEffect, useState } from "react";
 
 const Menu = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -15,11 +17,15 @@ const Menu = () => {
         if (!response.ok) {
           throw new Error("Failed to load data");
         }
-        const {data} = await response.json();
+        const { data } = await response.json();
 
-        setProducts(data);
+        setTimeout(() => {
+          setProducts(data);
+          setLoading(false);
+        }, 2300);
       } catch (error) {
         setError(error.message || "An error has occurred");
+        setLoading(false);
       }
     };
 
@@ -30,7 +36,17 @@ const Menu = () => {
     return <div>Error: {error}</div>;
   }
 
-  return <ProductList products={products} />;
+  return (
+    <div className="menu__container">
+      {loading && (
+        <div className="menu__loading">
+          <Loader />
+        </div>
+      )}
+
+      {!loading && <ProductList products={products} />}
+    </div>
+  );
 };
 
 export default Menu;
