@@ -2,10 +2,11 @@ import "./Menu.css";
 import ProductList from "../ProductList/ProductList";
 import Loader from "../Loader/Loader";
 import { useEffect, useState } from "react";
+import wait from "../../utils/wait";
 
 const Menu = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, isLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -19,13 +20,12 @@ const Menu = () => {
         }
         const { data } = await response.json();
 
-        setTimeout(() => {
-          setProducts(data);
-          setLoading(false);
-        }, 2300);
+        setProducts(data);
       } catch (error) {
         setError(error.message || "An error has occurred");
-        setLoading(false);
+      } finally {
+        await wait(2300);
+        isLoading(false);
       }
     };
 
@@ -36,14 +36,16 @@ const Menu = () => {
     return <div>Error: {error}</div>;
   }
 
+  if (loading) {
+    return (
+      <div className="menu__loading">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <div className="menu__container">
-      {loading && (
-        <div className="menu__loading">
-          <Loader />
-        </div>
-      )}
-
       {!loading && <ProductList products={products} />}
     </div>
   );
