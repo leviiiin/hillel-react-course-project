@@ -10,14 +10,7 @@ body {
 }
 
 .text-yellow {
-  color: rgb(234 179 8);
-}
-
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  color: rgb(234, 179, 8);
 }
 
 .content {
@@ -34,4 +27,3 @@ body {
 .sub-title {
   margin-bottom: 30px;
 }
-
