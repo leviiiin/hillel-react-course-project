@@ -1,13 +1,14 @@
+import "./SignupForm.css";
 import { useState } from "react";
-import "./LoginForm.css";
 import { Input, Button } from "../index";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const SignupForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     password: "",
+    confirmPassword: "",
   });
   const [error, setError] = useState("");
 
@@ -19,15 +20,20 @@ const LoginForm = () => {
     });
   };
 
-  const handleLogin = (event) => {
+  const handleSignup = (event) => {
     event.preventDefault();
 
-    if (!formData.name || !formData.password) {
+    if (!formData.name || !formData.password || !formData.confirmPassword) {
       setError("Please fill in all fields");
       return;
     }
 
-    navigate("/menu");
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    navigate("/login");
   };
 
   return (
@@ -48,22 +54,30 @@ const LoginForm = () => {
         value={formData.password}
         onChange={handleInputChange}
       />
+      <Input
+        type="password"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+        className="login-form__input"
+        value={formData.confirmPassword}
+        onChange={handleInputChange}
+      />
       {error && <p className="error-message">{error}</p>}
       <Button
         theme="primary"
         className="login-form__button"
-        onClick={handleLogin}
+        onClick={handleSignup}
       >
-        Login
+        Sign Up
       </Button>
-      <div className="signup-link__container">
-        Don`t have an account?
-        <Link className="signup-link" to="/signup">
-          Sign Up
+      <div className="login-link__container">
+        Have an Account?
+        <Link className="login-link" to="/login">
+          Log In
         </Link>
       </div>
     </form>
   );
 };
 
-export default LoginForm;
+export default SignupForm;

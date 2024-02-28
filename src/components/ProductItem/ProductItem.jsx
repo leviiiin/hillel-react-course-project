@@ -1,6 +1,5 @@
 import "./ProductItem.css";
-import Button from "../Button/Button";
-import Counter from "../Counter/Counter";
+import { Button, Counter } from "../index";
 import { useState } from "react";
 
 const ProductItem = ({ product }) => {

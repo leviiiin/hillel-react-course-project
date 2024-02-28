@@ -1,5 +1,5 @@
 import "./Counter.css";
-import Button from "../Button/Button";
+import { Button } from "../index";
 
 const Counter = (props) => {
   const { count, onChange } = props;

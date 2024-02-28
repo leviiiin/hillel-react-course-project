@@ -1,6 +1,6 @@
 import "./Menu.css";
-import ProductList from "../ProductList/ProductList";
-import Loader from "../Loader/Loader";
+import ProductList from "../../components/ProductList/ProductList";
+import Loader from "../../components/Loader/Loader";
 import { useEffect, useState } from "react";
 import wait from "../../utils/wait";
 
@@ -24,7 +24,7 @@ const Menu = () => {
       } catch (error) {
         setError(error.message || "An error has occurred");
       } finally {
-        await wait(2300);
+        await wait(1000);
         isLoading(false);
       }
     };
