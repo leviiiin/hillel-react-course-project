@@ -50,6 +50,7 @@ const LoginForm = () => {
       />
       {error && <p className="error-message">{error}</p>}
       <Button
+        type="submit"
         theme="primary"
         className="login-form__button"
         onClick={handleLogin}

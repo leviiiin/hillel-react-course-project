@@ -1,11 +1,12 @@
 import "./Button.css";
 
 const Button = (props) => {
+  const { type = "button", onClick, className, theme } = props;
   return (
     <button
-      type="button"
-      onClick={props.onClick}
-      className={`button button--${props.theme} ${props.className}`}
+      type={type}
+      onClick={onClick}
+      className={`button button--${theme} ${className}`}
     >
       {props.children}
     </button>
