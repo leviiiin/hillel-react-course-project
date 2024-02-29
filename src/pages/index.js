@@ -1,5 +1,5 @@
-export { default as Home } from './Home/Home';
-export { default as Login } from './Login/Login';
-export { default as Menu } from './Menu/Menu';
-export { default as PageNotFount } from './PageNotFount/PageNotFount';
-export { default as Signup } from './Signup/Signup';
+export { default as HomePage } from './HomePage/HomePage';
+export { default as LoginPage } from './LoginPage/LoginPage';
+export { default as MenuPage } from './MenuPage/MenuPage';
+export { default as NotFountPage } from './NotFountPage/NotFountPage';
+export { default as SignupPage } from './SignupPage/SignupPage';

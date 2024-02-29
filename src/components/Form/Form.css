@@ -1,4 +1,4 @@
-.signup-form {
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,26 +6,19 @@
   gap: 10px;
 }
 
-.signup-form__input {
+.form__input {
   margin: 0 auto;
   min-width: 270px;
   border-color: rgb(0, 0, 0, 0.2);
 }
 
-.signup-form__button {
+.form__button {
   margin-top: 5px;
   min-width: 200px;
 }
 
-.login-link__container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.login-link {
+.form__link {
+  margin-left: 10px;
   text-decoration: none;
   color: orange;
   font-weight: 600;
@@ -34,6 +27,6 @@
   transition: 0.4s;
 }
 
-.login-link:hover {
+.form__link:hover {
   border-color: orange;
 }

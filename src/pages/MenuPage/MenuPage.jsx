@@ -1,10 +1,10 @@
-import "./Menu.css";
+import "./MenuPage.css";
 import ProductList from "../../components/ProductList/ProductList";
 import Loader from "../../components/Loader/Loader";
 import { useEffect, useState } from "react";
 import wait from "../../utils/wait";
 
-const Menu = () => {
+const MenuPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, isLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -45,10 +45,10 @@ const Menu = () => {
   }
 
   return (
-    <div className="menu__container">
+    <div className="menuPage__container">
       {!loading && <ProductList products={products} />}
     </div>
   );
 };
 
-export default Menu;
+export default MenuPage;
