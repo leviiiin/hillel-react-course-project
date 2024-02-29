@@ -4,8 +4,7 @@
   padding: 10px 15px;
   color: #333333;
   font-size: 16px;
-  font-weight: 600;
-  border-radius: 15px;
+  border-radius: 4px;
   cursor: pointer;
   transition: 0.4s;
   min-width: 150px;
@@ -15,30 +14,30 @@
   background-color: rgb(255, 201, 38);
 }
 
-.button--primary {
+.primary {
   background-color: rgb(234, 179, 8);
 }
 
-.button--primary:hover {
+.primary:hover {
   background-color: rgb(255, 201, 38);
 }
 
-.button--ghost {
+.ghost {
   background-color: transparent
 }
 
-.button--ghost:hover {
+.ghost:hover {
   background-color: rgb(255, 201, 38);
   border-color: rgb(255, 201, 38);
 }
 
-.button--disable {
+.disable {
   color: rgba(51, 51, 51, 0.4);
   cursor: not-allowed;
   background: none;
 }
 
-.button--disable:hover {
+.disable:hover {
   color: rgba(51, 51, 51, 0.4);
   background: none; 
 }
