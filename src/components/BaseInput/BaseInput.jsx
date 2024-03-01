@@ -1,4 +1,4 @@
-import "./Input.css";
+import "./BaseInput.css";
 
 const BaseInput = (props) => {
   return <input placeholder={props.placeholder} />;

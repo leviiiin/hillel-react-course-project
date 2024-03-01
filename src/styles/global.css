@@ -10,7 +10,7 @@ body {
 }
 
 .text-yellow {
-  color: rgb(234, 179, 8);
+  color: rgb(234 179 8);
 }
 
 .wrapper {
@@ -34,3 +34,4 @@ body {
 .sub-title {
   margin-bottom: 30px;
 }
+
