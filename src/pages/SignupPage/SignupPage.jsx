@@ -1,10 +1,10 @@
 import "./SignupPage.css";
-import { Form } from "../../components/index";
+import { SignupForm } from "../../components/index";
 
 const SignupPage = () => {
   return (
-    <div className="signupPage__container">
-      <Form formType="signup" />
+    <div className="signup-page">
+      <SignupForm />
     </div>
   );
 };
