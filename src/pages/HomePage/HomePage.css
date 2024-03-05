@@ -1,15 +1,3 @@
-.homePage__container {
+.home-page {
   margin-top: 30px;
-}
-
-.homePage__title {
-  font-size: 50px;
-  font-weight: 500;
-  color: orange;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
-  margin-bottom: 20px;
-}
-
-.homePage__button{ 
-  text-decoration: none;
 }

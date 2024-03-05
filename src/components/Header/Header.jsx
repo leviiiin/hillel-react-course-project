@@ -19,24 +19,6 @@ const Header = () => {
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/menu"
-              className="header__menu__link"
-              activeclassname="active"
-            >
-              Menu
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/login"
-              className="header__menu__link"
-              activeclassname="active"
-            >
-              Login
-            </NavLink>
-          </li>
         </ul>
       </nav>
       <form>
