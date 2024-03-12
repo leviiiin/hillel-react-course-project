@@ -1,8 +1,8 @@
-.homePage__container {
+.home-page__container {
   margin-top: 30px;
 }
 
-.homePage__title {
+.home-page__title {
   font-size: 50px;
   font-weight: 500;
   color: orange;
@@ -10,6 +10,6 @@
   margin-bottom: 20px;
 }
 
-.homePage__button{ 
+.home-page__button{ 
   text-decoration: none;
 }

@@ -1,8 +1,14 @@
 import "./styles/reset.css";
 import "./styles/global.css";
-
 import { Header } from "./components/index";
-import { MenuPage, HomePage, LoginPage, NotFountPage, SignupPage } from "./pages/index";
+import {
+  MenuPage,
+  HomePage,
+  LoginPage,
+  NotFountPage,
+  SignupPage,
+  CartPage,
+} from "./pages/index";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -15,7 +21,7 @@ function App() {
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-
+          <Route path="/cart" element={<CartPage />} />
           <Route path="*" element={<NotFountPage />} />
         </Routes>
       </main>

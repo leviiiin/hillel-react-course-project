@@ -44,9 +44,28 @@ const MenuPage = () => {
     );
   }
 
+  const updateProduct = (productId, newQty) => {
+    const updatedProducts = products.map((product) => {
+      if (product.id === productId) {
+        return {
+          ...product,
+          qty: newQty,
+        };
+      }
+      return product;
+    });
+
+    setProducts(updatedProducts);
+  };
+
   return (
-    <div className="menuPage__container">
-      {!loading && <ProductList products={products} />}
+    <div className="menu-page__container">
+      {!loading && (
+        <ProductList
+          products={products}
+          updateProduct={updateProduct}
+        />
+      )}
     </div>
   );
 };

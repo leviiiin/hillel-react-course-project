@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
-    <div className="homePage__container">
-      <h1 className="homePage__title">Home</h1>
-      <Link to="/menu" className="button button--primary homePage__button">
+    <div className="home-page">
+      <h1 className="home-page__title">Home</h1>
+      <Link to="/menu" className="button button--primary home-page__button">
         Go to Menu
       </Link>
     </div>

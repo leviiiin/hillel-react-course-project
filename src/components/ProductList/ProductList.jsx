@@ -1,11 +1,15 @@
 import "./ProductList.css";
-import { ProductItem } from "../index";
+import ProductItem from "../ProductItem/ProductItem";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, updateProduct }) => {
   return (
     <ul className="product__list">
       {products.map((product) => (
-        <ProductItem key={product.id} product={product} />
+        <ProductItem
+          key={product.id}
+          product={product}
+          updateProduct={updateProduct}
+        />
       ))}
     </ul>
   );

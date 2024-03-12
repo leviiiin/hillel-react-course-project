@@ -1,5 +1,5 @@
 import "./Header.css";
-import { Input } from "../index";
+// import { Input } from "../index";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
@@ -39,9 +39,16 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <form>
+      {/* <form>
         <Input placeholder="Search for the order #" />
-      </form>
+      </form> */}
+      <NavLink
+        to="/cart"
+        className="header__menu__link"
+        activeclassname="active"
+      >
+        <i className="bi bi-cart3 header__cart"></i>
+      </NavLink>
     </header>
   );
 };

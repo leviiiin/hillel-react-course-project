@@ -1,22 +1,48 @@
 import "./ProductItem.css";
-import { Button, Counter } from "../index";
-import { useState } from "react";
+import { Button } from "../index";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CartProvider";
 
-const ProductItem = ({ product }) => {
-  const { imageUrl, name, ingredients, unitPrice, soldOut } = product;
+const ProductItem = ({ product, updateProduct }) => {
+  const { imageUrl, name, ingredients, unitPrice, soldOut, id, qty } = product;
   const ingredientsFormatted = ingredients.join(", ");
-  const [productAmount, setProductAmount] = useState(0);
+  const { dispatch } = useContext(CartContext);
 
   const addToCart = () => {
-    setProductAmount(1);
+    dispatch({
+      type: "ADD_ITEM",
+      payload: product,
+    });
+    updateProduct(id, 1);
+  };
+
+  const handleIncrementItem = () => {
+    dispatch({
+      type: "INCREMENT_ITEM",
+      payload: id,
+    });
+    updateProduct(id, qty + 1);
+  };
+
+  const handleDecrementItem = () => {
+    if (qty <= 1) {
+      deleteFromCart();
+    }
+
+    dispatch({
+      type: "DECREMENT_ITEM",
+      payload: id,
+    });
+
+    updateProduct(id, qty - 1);
   };
 
   const deleteFromCart = () => {
-    setProductAmount(0);
-  };
-
-  const changeProductAmount = (newAmount) => {
-    setProductAmount(newAmount);
+    dispatch({
+      type: "DELETE_ITEM",
+      payload: id,
+    });
+    updateProduct(id, 0);
   };
 
   const getActionTemplate = () => {
@@ -27,37 +53,56 @@ const ProductItem = ({ product }) => {
         </Button>
       );
     }
-    if (productAmount === 0) {
+
+    if (qty > 0) {
       return (
-        <Button theme="primary" className="product__btn" onClick={addToCart}>
-          Add to cart
+        <Button
+          theme="primary"
+          className="product__btn"
+          onClick={deleteFromCart}
+        >
+          Delete
         </Button>
       );
     }
 
     return (
-      <Button theme="primary" className="product__btn" onClick={deleteFromCart}>
-        Delete
+      <Button theme="primary" className="product__btn" onClick={addToCart}>
+        Add to cart
       </Button>
     );
   };
 
   return (
     <li className="product">
-      <img src={imageUrl} className="product__image" />
+      <img src={imageUrl} className="product__image" alt={name} />
       <div className="product__info">
         <p className="product__name">{name}</p>
         <p className="product__ingredients">{ingredientsFormatted}</p>
         <div className="product__actions">
           <p className="product__price">${unitPrice}</p>
-          {productAmount !== 0 && (
-            <Counter
-              count={productAmount}
-              onChange={changeProductAmount}
-              className="product__counter"
-            />
-          )}
-          {getActionTemplate()}
+          <div className="product__actions-order">
+            {qty > 0 && (
+              <div className="product__counter">
+                <Button
+                  theme="primary"
+                  className="product__counter-btn"
+                  onClick={handleDecrementItem}
+                >
+                  -
+                </Button>
+                <span className="product__counter-label">{qty}</span>
+                <Button
+                  theme="primary"
+                  className="product__counter-btn"
+                  onClick={handleIncrementItem}
+                >
+                  +
+                </Button>
+              </div>
+            )}
+            {getActionTemplate()}
+          </div>
         </div>
       </div>
     </li>

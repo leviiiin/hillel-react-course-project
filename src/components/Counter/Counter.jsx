@@ -1,15 +1,30 @@
 import "./Counter.css";
+import { useReducer, useEffect } from "react";
 import { Button } from "../index";
 
 const Counter = (props) => {
-  const { count, onChange } = props;
+  function reducer(state, action) {
+    switch (action.type) {
+      case "increment":
+        return state + 1;
+      case "decrement":
+        return state - 1;
+      case "set":
+        return action.payload;
+      default:
+        throw new Error();
+    }
+  }
 
-  const handleIncrement = () => {
-    onChange(count + 1);
-  };
+  const [state, dispatch] = useReducer(reducer, props.count);
 
-  const handleDecrement = () => {
-    onChange(count - 1);
+  useEffect(() => {
+    props.onChange(state);
+  }, [state, props.onChange]);
+
+  const handleInputChange = (e) => {
+    const newValue = parseInt(e.target.value);
+    dispatch({ type: "set", payload: newValue });
   };
 
   return (
@@ -17,15 +32,20 @@ const Counter = (props) => {
       <Button
         theme="primary"
         className="counter__btn"
-        onClick={handleDecrement}
+        onClick={() => dispatch({ type: "decrement" })}
       >
         -
       </Button>
-      <p className="counter__label">{count}</p>
+      <input
+        type="number"
+        value={state}
+        className="counter__label"
+        onChange={handleInputChange}
+      />
       <Button
         theme="primary"
         className="counter__btn"
-        onClick={handleIncrement}
+        onClick={() => dispatch({ type: "increment" })}
       >
         +
       </Button>
