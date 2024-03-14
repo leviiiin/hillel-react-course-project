@@ -6,7 +6,7 @@ import { CartContext } from "../../contexts/CartProvider";
 const ProductItem = ({ product, updateProduct }) => {
   const { imageUrl, name, ingredients, unitPrice, soldOut, id, qty } = product;
   const ingredientsFormatted = ingredients.join(", ");
-  const { dispatch } = useContext(CartContext);
+  const { state, dispatch } = useContext(CartContext);
 
   const addToCart = () => {
     dispatch({
@@ -27,14 +27,14 @@ const ProductItem = ({ product, updateProduct }) => {
   const handleDecrementItem = () => {
     if (qty <= 1) {
       deleteFromCart();
+    } else {
+      dispatch({
+        type: "DECREMENT_ITEM",
+        payload: id,
+      });
+
+      updateProduct(id, qty - 1);
     }
-
-    dispatch({
-      type: "DECREMENT_ITEM",
-      payload: id,
-    });
-
-    updateProduct(id, qty - 1);
   };
 
   const deleteFromCart = () => {
@@ -46,6 +46,8 @@ const ProductItem = ({ product, updateProduct }) => {
   };
 
   const getActionTemplate = () => {
+    const cartItem = state.items.find((item) => item.id === id);
+
     if (soldOut) {
       return (
         <Button theme="disable" className="product__btn">
@@ -54,15 +56,32 @@ const ProductItem = ({ product, updateProduct }) => {
       );
     }
 
-    if (qty > 0) {
+    if (cartItem) {
       return (
-        <Button
-          theme="primary"
-          className="product__btn"
-          onClick={deleteFromCart}
-        >
-          Delete
-        </Button>
+        <div className="product__counter">
+          <Button
+            theme="primary"
+            className="product__counter-btn"
+            onClick={handleDecrementItem}
+          >
+            -
+          </Button>
+          <span className="product__counter-label">{cartItem.qty}</span>
+          <Button
+            theme="primary"
+            className="product__counter-btn"
+            onClick={handleIncrementItem}
+          >
+            +
+          </Button>
+          <Button
+            theme="primary"
+            className="product__btn"
+            onClick={deleteFromCart}
+          >
+            Delete
+          </Button>
+        </div>
       );
     }
 
@@ -81,28 +100,7 @@ const ProductItem = ({ product, updateProduct }) => {
         <p className="product__ingredients">{ingredientsFormatted}</p>
         <div className="product__actions">
           <p className="product__price">${unitPrice}</p>
-          <div className="product__actions-order">
-            {qty > 0 && (
-              <div className="product__counter">
-                <Button
-                  theme="primary"
-                  className="product__counter-btn"
-                  onClick={handleDecrementItem}
-                >
-                  -
-                </Button>
-                <span className="product__counter-label">{qty}</span>
-                <Button
-                  theme="primary"
-                  className="product__counter-btn"
-                  onClick={handleIncrementItem}
-                >
-                  +
-                </Button>
-              </div>
-            )}
-            {getActionTemplate()}
-          </div>
+          <div className="product__actions-order">{getActionTemplate()}</div>
         </div>
       </div>
     </li>

@@ -7,7 +7,7 @@ import { useState, useContext } from "react";
 const CartPage = () => {
   const [orderComplete, setOrderComplete] = useState(false);
   const { dispatch, state } = useContext(CartContext);
-  
+
   const handleDeleteItem = (id) => {
     dispatch({
       type: "DELETE_ITEM",
@@ -86,13 +86,13 @@ const CartPage = () => {
                         >
                           +
                         </Button>
+                        <Button
+                          theme="primary"
+                          onClick={() => handleDeleteItem(item.id)}
+                        >
+                          Delete
+                        </Button>
                       </div>
-                      <Button
-                        theme="primary"
-                        onClick={() => handleDeleteItem(item.id)}
-                      >
-                        Delete
-                      </Button>
                     </div>
                   </li>
                 );
