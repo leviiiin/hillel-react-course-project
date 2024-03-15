@@ -1,12 +1,10 @@
 import "./ProductItem.css";
 import { Button } from "../index";
-import { useContext } from "react";
-import { CartContext } from "../../contexts/CartProvider";
 
-const ProductItem = ({ product, updateProduct }) => {
+const ProductItem = ({ product, updateProduct, state, dispatch }) => {
   const { imageUrl, name, ingredients, unitPrice, soldOut, id, qty } = product;
   const ingredientsFormatted = ingredients.join(", ");
-  const { state, dispatch } = useContext(CartContext);
+  
 
   const addToCart = () => {
     dispatch({

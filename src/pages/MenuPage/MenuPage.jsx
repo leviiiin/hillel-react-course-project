@@ -1,10 +1,12 @@
 import "./MenuPage.css";
 import ProductList from "../../components/ProductList/ProductList";
 import Loader from "../../components/Loader/Loader";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import wait from "../../utils/wait";
+import { CartContext } from "../../contexts/CartProvider";
 
 const MenuPage = () => {
+  const { state, dispatch } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [loading, isLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -61,10 +63,7 @@ const MenuPage = () => {
   return (
     <div className="menu-page__container">
       {!loading && (
-        <ProductList
-          products={products}
-          updateProduct={updateProduct}
-        />
+        <ProductList products={products} updateProduct={updateProduct} state={state} dispatch={dispatch} />
       )}
     </div>
   );
