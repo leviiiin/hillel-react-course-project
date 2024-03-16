@@ -48,7 +48,7 @@ const ProductItem = ({ product, updateProduct, state, dispatch }) => {
 
     if (soldOut) {
       return (
-        <Button theme="disable" className="product__btn">
+        <Button theme="disabled" className="product__btn">
           Sold out
         </Button>
       );

@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
 import "./CartPage.css";
+import { Link } from "react-router-dom";
 import { Button } from "../../components";
 import { CartContext } from "../../contexts/CartProvider";
 import { useState, useContext } from "react";
+import { OrderForm } from "../../components/index";
 
 const CartPage = () => {
   const [orderComplete, setOrderComplete] = useState(false);
   const { dispatch, state } = useContext(CartContext);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const handleDeleteItem = (id) => {
     dispatch({
@@ -41,25 +43,29 @@ const CartPage = () => {
         payload: item.id,
       });
     });
+    setTotalPrice(0);
   };
 
   const orderProduct = () => {
+    const currentTotalPrice = state.totalPrice;
     clearCart();
     setOrderComplete(true);
-    setTimeout(() => {
-      setOrderComplete(false);
-    }, 4000);
+    setTotalPrice(currentTotalPrice);
   };
 
   return (
     <div className="cart-page">
       <div className="wrapper">
         <div className="cart-page__content">
-          <Link to="/menu" className="cart-page__back-link">
-            <i className="bi bi-arrow-left-short"></i>
-            <p>Back to menu</p>
-          </Link>
-          <h1 className="cart-page__title">Your cart</h1>
+          {!orderComplete && (
+            <>
+              <Link to="/menu" className="cart-page__back-link">
+                <i className="bi bi-arrow-left-short"></i>
+                <p>Back to menu</p>
+              </Link>
+              <h1 className="cart-page__title">Your cart</h1>
+            </>
+          )}
           <div className="cart-page__order">
             <ul className="cart-page__order-list">
               {state.items.map((item) => {
@@ -113,12 +119,7 @@ const CartPage = () => {
                 </Button>
               </div>
             )}
-            {orderComplete && (
-              <div className="order-complete">
-                <p className="order-complete__title">Order is processed</p>
-                <i className="bi bi-check-lg order-complete__icon"></i>
-              </div>
-            )}
+            {orderComplete && <OrderForm price={totalPrice} />}
           </div>
         </div>
       </div>

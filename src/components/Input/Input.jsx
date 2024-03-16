@@ -7,6 +7,8 @@ const Input = ({
   onChange,
   placeholder,
   className = "",
+  onBlur,
+  onKeyDown
 }) => {
   return (
     <input
@@ -14,6 +16,8 @@ const Input = ({
       name={name}
       value={value}
       onChange={onChange}
+      onBlur={onBlur}
+      onKeyDown={onKeyDown}
       placeholder={placeholder}
       className={`input ${className}`}
     />
