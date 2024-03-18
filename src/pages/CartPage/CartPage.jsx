@@ -1,14 +1,12 @@
 import "./CartPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components";
 import { CartContext } from "../../contexts/CartProvider";
-import { useState, useContext } from "react";
-import { OrderForm } from "../../components/index";
+import { useContext } from "react";
 
 const CartPage = () => {
-  const [orderComplete, setOrderComplete] = useState(false);
   const { dispatch, state } = useContext(CartContext);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
 
   const handleDeleteItem = (id) => {
     dispatch({
@@ -43,29 +41,25 @@ const CartPage = () => {
         payload: item.id,
       });
     });
-    setTotalPrice(0);
   };
 
   const orderProduct = () => {
     const currentTotalPrice = state.totalPrice;
+    navigate("/order", { state: { totalPrice: currentTotalPrice } });
     clearCart();
-    setOrderComplete(true);
-    setTotalPrice(currentTotalPrice);
   };
 
   return (
     <div className="cart-page">
       <div className="wrapper">
         <div className="cart-page__content">
-          {!orderComplete && (
-            <>
-              <Link to="/menu" className="cart-page__back-link">
-                <i className="bi bi-arrow-left-short"></i>
-                <p>Back to menu</p>
-              </Link>
-              <h1 className="cart-page__title">Your cart</h1>
-            </>
-          )}
+          <>
+            <Link to="/menu" className="cart-page__back-link">
+              <i className="bi bi-arrow-left-short"></i>
+              <p>Back to menu</p>
+            </Link>
+            <h1 className="cart-page__title">Your cart</h1>
+          </>
           <div className="cart-page__order">
             <ul className="cart-page__order-list">
               {state.items.map((item) => {
@@ -111,7 +105,7 @@ const CartPage = () => {
             )}
             {state.items.length > 0 && (
               <div className="cart-page__order-btns">
-                <Button theme="primary" onClick={() => orderProduct()}>
+                <Button theme="primary" onClick={orderProduct}>
                   Order
                 </Button>
                 <Button theme="ghost" onClick={clearCart}>
@@ -119,7 +113,6 @@ const CartPage = () => {
                 </Button>
               </div>
             )}
-            {orderComplete && <OrderForm price={totalPrice} />}
           </div>
         </div>
       </div>

@@ -45,7 +45,7 @@ const ProductItem = ({ product, updateProduct, state, dispatch }) => {
 
   const getActionTemplate = () => {
     const cartItem = state.items.find((item) => item.id === id);
-
+    console.log(cartItem);
     if (soldOut) {
       return (
         <Button theme="disabled" className="product__btn">

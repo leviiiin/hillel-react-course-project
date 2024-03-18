@@ -8,6 +8,7 @@ import {
   NotFountPage,
   SignupPage,
   CartPage,
+  OrderPage,
 } from "./pages/index";
 import { Route, Routes } from "react-router-dom";
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/order" element={<OrderPage />} />
           <Route path="*" element={<NotFountPage />} />
         </Routes>
       </main>

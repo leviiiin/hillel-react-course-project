@@ -4,3 +4,4 @@ export { default as MenuPage } from './MenuPage/MenuPage';
 export { default as NotFountPage } from './NotFountPage/NotFountPage';
 export { default as SignupPage } from './SignupPage/SignupPage';
 export { default as CartPage } from './CartPage/CartPage';
+export { default as OrderPage } from './OrderPage/OrderPage';
