@@ -1,14 +1,14 @@
 import "./OrderForm.css";
-import { Button } from "../index";
+import { Button, Input } from "../index";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const OrderForm = ({ price }) => {
   const navigateTo = useNavigate();
   const {
-    register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm({
     mode: "onBlur",
     defaultValues: {
@@ -30,9 +30,13 @@ const OrderForm = ({ price }) => {
         <div className="order-form__row">
           <p className="order-form__input-title">First Name</p>
           <div>
-            <input
+            <Input
+              name="name"
+              control={control}
+              rules={{
+                required: "Address is required!",
+              }}
               className={`order-form__input ${errors.name && `error`}`}
-              {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
               <p className="order-form__error">{errors.name.message}</p>
@@ -42,16 +46,18 @@ const OrderForm = ({ price }) => {
         <div className="order-form__row">
           <p className="order-form__input-title">Phone number</p>
           <div>
-            <input
+            <Input
+              name="phone"
+              control={control}
               type="number"
               className={`order-form__input ${errors.phone && `error`}`}
-              {...register("phone", {
-                required: "Phone number is required",
+              rules={{
+                required: "Phone number is required!",
                 pattern: {
                   value: /^(?:(?:\+?38)?0|380)\d{9}$/,
                   message: "Invalid phone number format!",
                 },
-              })}
+              }}
             />
             {errors.phone && (
               <p className="order-form__error">{errors.phone.message}</p>
@@ -61,15 +67,17 @@ const OrderForm = ({ price }) => {
         <div className="order-form__row">
           <p className="order-form__input-title">Address</p>
           <div>
-            <input
+            <Input
+              name="address"
+              control={control}
               className={`order-form__input ${errors.address && `error`}`}
-              {...register("address", {
-                required: "Address is required",
+              rules={{
+                required: "Address is required!",
                 pattern: {
                   value: /^[a-zA-Zа-яА-Я]+\s\d+$/,
                   message: "Invalid address format. Example: Street 1",
                 },
-              })}
+              }}
             />
             {errors.address && (
               <p className="order-form__error">{errors.address.message}</p>

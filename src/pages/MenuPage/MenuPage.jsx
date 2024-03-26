@@ -63,7 +63,12 @@ const MenuPage = () => {
   return (
     <div className="menu-page__container">
       {!loading && (
-        <ProductList products={products} updateProduct={updateProduct} state={state} dispatch={dispatch} />
+        <ProductList
+          products={products}
+          updateProduct={updateProduct}
+          state={state}
+          dispatch={dispatch}
+        />
       )}
     </div>
   );

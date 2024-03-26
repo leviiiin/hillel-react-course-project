@@ -1,25 +1,25 @@
 import "./Input.css";
+import { useController } from "react-hook-form";
 
 const Input = ({
   type = "text",
   name,
-  value,
-  onChange,
   placeholder,
   className = "",
-  onBlur,
-  onKeyDown
+  control,
+  rules,
 }) => {
+  const {
+    field,
+    fieldState: { error },
+  } = useController({ name, control, rules });
+
   return (
     <input
       type={type}
-      name={name}
-      value={value}
-      onChange={onChange}
-      onBlur={onBlur}
-      onKeyDown={onKeyDown}
+      {...field}
       placeholder={placeholder}
-      className={`input ${className}`}
+      className={`input ${className} ${error ? "error" : ""}`}
     />
   );
 };

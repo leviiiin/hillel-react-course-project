@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./SignupForm.css";
-import { Input, Button, Form } from "../index";
+import { Button, Form } from "../index";
 import { Link, useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
@@ -39,27 +39,27 @@ const SignupForm = () => {
 
   return (
     <Form className="form" onSubmit={handleSignup}>
-      <Input
+      <input
         type="text"
         name="name"
         placeholder="Name"
-        className="form__input"
+        className="input form__input"
         value={formData.name}
         onChange={handleInputChange}
       />
-      <Input
+      <input
         type="password"
         name="password"
         placeholder="Password"
-        className="form__input"
+        className="input form__input"
         value={formData.password}
         onChange={handleInputChange}
       />
-      <Input
+      <input
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password"
-        className="form__input"
+        className="input form__input"
         value={formData.confirmPassword}
         onChange={handleInputChange}
       />

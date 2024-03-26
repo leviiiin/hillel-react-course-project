@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./LoginForm.css";
-import { Input, Button, Form } from "../index";
+import { Button, Form } from "../index";
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
@@ -31,19 +31,19 @@ const LoginForm = () => {
   return (
     <>
       <Form className="login-form" onSubmit={handleLogin}>
-        <Input
+        <input
           type="text"
           name="name"
           placeholder="Name"
-          className="form__input"
+          className="input form__input"
           value={formData.name}
           onChange={handleInputChange}
         />
-        <Input
+        <input
           type="password"
           name="password"
           placeholder="Password"
-          className="form__input"
+          className="input form__input"
           value={formData.password}
           onChange={handleInputChange}
         />
