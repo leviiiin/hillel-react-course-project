@@ -9,7 +9,7 @@ export { default as Form } from './Form/Form';
 export { default as LoginForm } from './LoginForm/LoginForm';
 export { default as SignupForm } from './SignupForm/SignupForm';
 export { default as OrderForm } from './OrderForm/OrderForm';
-
+export { default as Tag } from './Tag/Tag';
 
 
 

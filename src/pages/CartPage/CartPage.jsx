@@ -44,8 +44,17 @@ const CartPage = () => {
   };
 
   const orderProduct = () => {
-    const currentTotalPrice = state.totalPrice;
-    navigate("/order", { state: { totalPrice: currentTotalPrice } });
+    const cartData = {
+      cart: state.items.map((item) => ({
+        name: item.name,
+        pizzaId: item.id,
+        quantity: item.qty,
+        totalPrice: item.qty * item.unitPrice,
+        unitPrice: item.unitPrice,
+      })),
+      totalPrice: state.totalPrice,
+    };
+    navigate("/order", { state: cartData });
     clearCart();
   };
 

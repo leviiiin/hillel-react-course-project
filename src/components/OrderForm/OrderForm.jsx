@@ -1,31 +1,40 @@
 import "./OrderForm.css";
 import { Button, Input } from "../index";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
-const OrderForm = ({ price }) => {
-  const navigateTo = useNavigate();
+const OrderForm = ({ onSubmit, cartData }) => {
   const {
     handleSubmit,
     formState: { errors },
     control,
+    setValue,
   } = useForm({
     mode: "onBlur",
     defaultValues: {
       name: "",
       phone: "",
       address: "",
+      priority: false,
+      position: "",
     },
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    navigateTo("/");
+  const submitOrderForm = (data) => {
+    const formData = {
+      ...data,
+      cart: cartData.cart,
+    };
+    onSubmit(formData);
+  };
+
+  const handleCheckboxChange = (e) => {
+    const isChecked = e.target.checked;
+    setValue("priority", isChecked);
   };
 
   return (
     <>
-      <form className="order-form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="order-form" onSubmit={handleSubmit(submitOrderForm)}>
         <h1 className="order-form__title">Ready to order? Let`s go!</h1>
         <div className="order-form__row">
           <p className="order-form__input-title">First Name</p>
@@ -87,12 +96,16 @@ const OrderForm = ({ price }) => {
         <div className="order-form__row">
           <p className="order-form__input-title"></p>
           <label className="order-form__label">
-            <input type="checkbox" className="order-form__checkbox" />
+            <input
+              type="checkbox"
+              className="order-form__checkbox"
+              onChange={handleCheckboxChange}
+            />
             Want to give your order priority?
           </label>
         </div>
         <Button type="submit" theme={"primary"} className="order-form__btn">
-          Order now for ${price}
+          Order now for ${cartData.totalPrice}
         </Button>
       </form>
     </>

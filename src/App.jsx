@@ -9,6 +9,7 @@ import {
   SignupPage,
   CartPage,
   OrderPage,
+  OrderDetailsPage,
 } from "./pages/index";
 import { Route, Routes } from "react-router-dom";
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/order/:id" element={<OrderDetailsPage />} />
           <Route path="*" element={<NotFountPage />} />
         </Routes>
       </main>
