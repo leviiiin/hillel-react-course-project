@@ -92,7 +92,7 @@ const ProductItem = ({ product, updateProduct, state, dispatch }) => {
 
   return (
     <li className="product">
-      {!imageUrl && <img src={imageUrl} className="product__image" alt={name} />}
+      {imageUrl && <img src={imageUrl} className="product__image" alt={name} />}
       <div className="product__info">
         <p className="product__name">{name}</p>
         <p className="product__ingredients">{ingredientsFormatted}</p>
